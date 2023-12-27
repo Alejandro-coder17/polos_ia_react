@@ -2,6 +2,7 @@ import React from 'react'
 
 import state from '../store'
 import { useSnapshot } from 'valtio'
+import { getContrastingColor } from '../config/helpers'
 
 const CustomButton = ({ type, title, handleClick, customStyles }) => {
   
@@ -11,7 +12,13 @@ const CustomButton = ({ type, title, handleClick, customStyles }) => {
         if(type === 'filled') {
             return {
                 background: snap.color,
-                color: '#000',
+                color: getContrastingColor(snap.color)
+            }
+        } else if(type === 'outline'){
+            return {
+                borderWidth: '1px',
+                borderColor: snap.color,
+                color: snap.color
             }
         }
     }
